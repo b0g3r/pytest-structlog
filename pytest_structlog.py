@@ -73,7 +73,7 @@ def log(monkeypatch):
 
     # redirect logging to log capture
     cap = StructuredLogCapture()
-    structlog.configure(processors=[cap.process])
+    structlog.configure(processors=[cap.process], cache_logger_on_first_use=False)
     monkeypatch.setattr("structlog.configure", no_op)
     monkeypatch.setattr("structlog.configure_once", no_op)
     yield cap
